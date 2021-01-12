@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <title>Library</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Library</h1>
+
+
+          <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+ 
+ 
+
+
+
+    <!-- Modal Structure -->
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4 class="black-text">New Book</h4>
+
+        <div class="row">
+          <form class="col s12" action="/" method="post" autocomplete="off" id="new_movie" name="new_movie">
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="title" type="text" class="validate" name="title">
+                <label for="title">Title</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="author" type="text" class="validate" name="author">
+                <label for="author">Author</label>
+              </div>
+
+              <div class="input-field col s6">
+                <input id="pages" type="number" class="validate" name="pages">
+                <label for="pages">Number of Pages</label>
+              </div>
+
+              <div class="input-field col s6">
+                <select id="read" name="read">
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="true">Read</option>
+                  <option value="false">Unread</option>
+                </select>
+                <label>Have you read this book?</label>
+              </div>
+
+
+              <button class="btn waves-effect waves-light modal-close" type="submit" name="action">Add
+              </button>
+
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect btn-flat">Close</a>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

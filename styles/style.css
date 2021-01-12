@@ -1,0 +1,11 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+
+a.modal-trigger {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
