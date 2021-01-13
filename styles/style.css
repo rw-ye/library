@@ -5,7 +5,7 @@ body {
 
 
 a.modal-trigger {
-  position: absolute;
+  position: fixed;
   bottom: 12px;
   right: 12px;
 }
