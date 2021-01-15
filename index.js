@@ -65,7 +65,7 @@ function showBook(book, index) {
   i.textContent = "delete";
 
   row.classList.add('row');
-  col.classList.add('col', 'l3');
+  col.classList.add('col', 'l3', 's12');
   card.classList.add('card');
   card_title.classList.add('card-content', 'white');
   card_content.classList.add('card-content');
