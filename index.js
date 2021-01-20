@@ -4,14 +4,14 @@ const container = document.querySelector('.container');
 container.appendChild(row);
 
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.modal');
-  var instances = M.Modal.init(elems);
+  let elems = document.querySelectorAll('.modal');
+  M.Modal.init(elems);
 });
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('select');
-  var instances = M.FormSelect.init(elems);
+  let elems = document.querySelectorAll('select');
+  M.FormSelect.init(elems);
 });
 
 
@@ -26,6 +26,10 @@ Book.prototype.info = function () {
   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read == false ? 'not read yet' : 'read'}`;
 }
 
+Book.prototype.status = function () {
+  return (this.read == 'Read' ? this.read = 'Not Read' : this.read = 'Read');
+}
+
 document.querySelector("#new_movie").addEventListener("submit", function (e) {
   e.preventDefault();
   let myForm = e.target;
@@ -37,6 +41,7 @@ document.querySelector("#new_movie").addEventListener("submit", function (e) {
   const book = new Book(title, author, pages, read);
   e.target.reset();
   addBookToLibrary(book);
+  saveLibrary()
 })
 
 
@@ -54,14 +59,14 @@ function showBook(book, index) {
   const span = document.createElement('span');
   const p = document.createElement('p');
   const p_two = document.createElement('p');
-  const p_three = document.createElement('p');
+  const book_status = document.createElement('a');
   const a = document.createElement('a');
   const i = document.createElement('i');
 
   span.textContent = book.title;
   p.textContent = book.author;
   p_two.textContent = book.pages;
-  p_three.textContent = book.read;
+  book_status.textContent = book.read;
   i.textContent = "delete";
 
   row.classList.add('row');
@@ -72,7 +77,7 @@ function showBook(book, index) {
   span.classList.add('black-text', 'card-title');
   p.classList.add('black-text');
   p_two.classList.add('black-text');
-  p_three.classList.add('black-text');
+  book_status.classList.add('waves-effect', 'waves-light', 'btn', 'status');
   a.classList.add('btn-floating', 'btn-medium', 'waves-effect', 'waves-light', 'red', 'remove');
   i.classList.add('material-icons');
   a.style.float = "right";
@@ -85,7 +90,7 @@ function showBook(book, index) {
   card.appendChild(card_content);
   card_content.appendChild(p);
   card_content.appendChild(p_two);
-  card_content.appendChild(p_three);
+  card_content.appendChild (book_status);
 
   a.appendChild(i);
 
@@ -94,6 +99,13 @@ function showBook(book, index) {
   document.querySelectorAll('.remove')[col.dataset.index].addEventListener('click', () => {
     removeBook(col.dataset.index);
     updateBookIndex();
+  });
+
+  document.querySelectorAll('.status')[col.dataset.index].addEventListener('click', () => {
+    updateBookIndex();
+    book.status();
+    book_status.textContent = book.read;
+    saveLibrary()
   });
 }
 
@@ -110,9 +122,13 @@ function updateBookIndex() {
 
 function removeBook(index) {
   console.log(index);
-  let x = 0;
-  let col = document.querySelectorAll('.col.l3');
   myLibrary.splice(index, 1);
   document.querySelector(`[data-index='${index}']`).remove();
   console.log(myLibrary);
 }
+
+function saveLibrary() {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+
