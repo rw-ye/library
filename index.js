@@ -5,7 +5,11 @@ const container = document.querySelector('.container');
 container.appendChild(row);
 
 if (getStorage()) {
-  myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+  let books = JSON.parse(localStorage.getItem('myLibrary'));
+  books.forEach(book => { 
+    book = new Book(book.title, book.author, book.pages, book.read);
+    myLibrary.push(book);
+   });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -51,7 +55,6 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
   showBooks()
 }
-
 
 function showBooks() {
   const items = document.querySelectorAll('.col.l3');
@@ -120,7 +123,6 @@ function showBooks() {
     index++;
   });
 }
-
 
 function updateBookIndex() {
   let x = 0;
