@@ -136,9 +136,9 @@ function updateBookIndex() {
 function removeBook(index) {
   console.log(index);
   myLibrary.splice(index, 1);
-  document.querySelector(`[data-index='${index}']`).remove();
   console.log(myLibrary);
   saveLibrary();
+  showBooks();
 }
 
 function saveLibrary() {
